@@ -29,6 +29,7 @@ jobs:
           workflow: share.yml
           repo: vdelacou/generate-json
           path: ./build
+          name: homework
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
