@@ -20,6 +20,9 @@ jobs:
         run: npm ci
       - name: Run test
         run: npm run test
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: Build page
         run: npm run build
       - name: Deploy to gh-pages

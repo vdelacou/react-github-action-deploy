@@ -1,6 +1,7 @@
 {
   "name": "react-github-action-deploy",
   "version": "0.1.0",
+  "homepage": "https://vdelacou.github.io/react-github-action-deploy/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
