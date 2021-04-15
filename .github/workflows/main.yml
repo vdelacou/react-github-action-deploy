@@ -2,11 +2,35 @@ name: CI
 on: push
 
 jobs:
-  download:
+  test-build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Install node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Install Packages
+        run: npm ci
+      - name: Run test
+        run: npm run test
+      - name: Build page
+        run: npm run build
       - name: Download math result for job 2
         uses: dawidd6/action-download-artifact@v2
         with:
+          github_token: ${{secrets.PAT}}
           workflow: share.yml
           repo: vdelacou/generate-json
+          path: ./build
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
