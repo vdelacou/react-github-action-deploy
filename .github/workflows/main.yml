@@ -8,6 +8,5 @@ jobs:
       - name: Download math result for job 2
         uses: dawidd6/action-download-artifact@v2
         with:
-          github_token: ${{secrets.PAT}}
           workflow: share.yml
           repo: vdelacou/generate-json
