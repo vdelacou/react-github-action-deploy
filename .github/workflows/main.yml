@@ -27,7 +27,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-    download:
+  download:
+    runs-on: ubuntu-latest
+    steps:
       - name: Download math result for job 2
         uses: actions/download-artifact@v2
         with:
